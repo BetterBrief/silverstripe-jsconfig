@@ -38,6 +38,9 @@ class JSConfig {
 	 */
 	static public function clear($key) {
 		unset(self::$data[$key]);
+		if (self::$has_inserted) {
+			Requirements::insertHeadTags('<script charset="utf-8">var JSCONFIG = JSCONFIG || {}; JSCONFIG[\''.$key.'\'] = undefined;</script>');
+		}
 	}
 
 	/**
@@ -55,7 +58,12 @@ class JSConfig {
 	 * @return string
 	 */
 	static protected function get_script_tag() {
-		return '<script charset="utf-8">var JSCONFIG = JSCONFIG || {}; JSCONFIG = ' . json_encode(self::$data, JSON_FORCE_OBJECT) .';</script>';
+		$script = '<script charset="utf-8">var JSCONFIG = JSCONFIG || {};';
+		foreach (self::$data as $key => $value) {
+			$script .= "JSCONFIG['$key'] = " . json_encode($value, JSON_FORCE_OBJECT) . ';';
+		}
+		$script .= '</script>';
+		return $script;
 	}
 
 }
