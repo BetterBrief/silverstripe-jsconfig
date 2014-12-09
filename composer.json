@@ -1,9 +1,8 @@
 {
 	"name": "betterbrief/silverstripe-jsconfig",
 	"description": "Create a clean JavaScript data interface between your frontend and your SilverStripe application.",
-	"version": "0.1.0",
 	"type": "silverstripe-module",
-	"license": "BSD",
+	"license": "BSD-3-Clause",
 	"homepage": "http://github.com/BetterBrief/silverstripe-jsconfig",
 	"keywords": ["jsconfig", "silverstripe"],
 	"authors": [
