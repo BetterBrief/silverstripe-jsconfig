@@ -16,6 +16,9 @@
 		"composer/installers": "~1.0"
 	},
 	"extra": {
+		"branch-alias": {
+			"dev-master": "2.x-dev"
+		},
 		"installer-name": "jsconfig"
 	}
 }
