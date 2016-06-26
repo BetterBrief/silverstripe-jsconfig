@@ -26,17 +26,17 @@ class JSConfig
      * @param bool $forceObject
      * @return void
      */
-    public static function add($key, $data)
+    public static function add($key, $datai, $forceObject = true)
     {
         self::$data[$key] = $data;
         if (self::$has_inserted) {
-			if ($forceObject) {
-				$json = json_encode($data, JSON_FORCE_OBJECT);
-			} else {
-				$json = json_encode($data);
-			}
-			Requirements::insertHeadTags('<script charset="utf-8">var JSCONFIG = JSCONFIG || {}; JSCONFIG[\''.$key.'\'] = ' . $json .';</script>');
+		if ($forceObject) {
+			$json = json_encode($data, JSON_FORCE_OBJECT);
+		} else {
+			$json = json_encode($data);
 		}
+		Requirements::insertHeadTags('<script charset="utf-8">var JSCONFIG = JSCONFIG || {}; JSCONFIG[\''.$key.'\'] = ' . $json .';</script>');
+	}
     }
 
     /**
