@@ -23,14 +23,20 @@ class JSConfig
      * If we have already inserted, then directly insert to the DOM.
      * @param string $key
      * @param mixed $data
+     * @param bool $forceObject
      * @return void
      */
-    public static function add($key, $data)
+    public static function add($key, $datai, $forceObject = true)
     {
         self::$data[$key] = $data;
         if (self::$has_inserted) {
-            Requirements::insertHeadTags('<script charset="utf-8">var JSCONFIG = JSCONFIG || {}; JSCONFIG[\''.$key.'\'] = ' . json_encode($data, JSON_FORCE_OBJECT) .';</script>');
-        }
+		if ($forceObject) {
+			$json = json_encode($data, JSON_FORCE_OBJECT);
+		} else {
+			$json = json_encode($data);
+		}
+		Requirements::insertHeadTags('<script charset="utf-8">var JSCONFIG = JSCONFIG || {}; JSCONFIG[\''.$key.'\'] = ' . $json .';</script>');
+	}
     }
 
     /**
