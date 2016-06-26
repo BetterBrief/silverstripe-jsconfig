@@ -26,7 +26,7 @@ class JSConfig
      * @param bool $forceObject
      * @return void
      */
-    public static function add($key, $datai, $forceObject = true)
+    public static function add($key, $data, $forceObject = true)
     {
         self::$data[$key] = $data;
         if (self::$has_inserted) {
